@@ -1,7 +1,6 @@
 # Base stage for shared dependencies
-FROM oven/bun:1 AS base
-WORKDIR /app
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+FROM docker.io/oven/bun:canary
+COPY package.json .
+RUN bun install
 COPY . .
-RUN bun run dev
+CMD [ "bun", "run", "build" ]
